@@ -76,6 +76,17 @@ router.get("/:id", async (req, res) => {
     } catch (error) {
         res.status(500).json(error);
     }
+});
+
+//get a user posts
+router.get("/profile/:username", async (req, res) => {
+    try {
+        const user = await User.findOne({ username: req.params.username });
+        const userPosts = await Post.find({ userId: user._id });
+        res.status(200).json(userPosts);
+    } catch (error) {
+        res.status(500).json(error);
+    }
 })
 
 
