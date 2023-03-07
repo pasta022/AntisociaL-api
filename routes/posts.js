@@ -112,6 +112,25 @@ router.get("/timeline/:userId", async (req, res) => {
     }
 });
 
+//comment on a post
+router.put("/comment/:id", async (req, res) => {
+    try {
+        const post = await Post.findById(req.params.id);
+        const user = await User.findById(req.body.userId);
+        await post.updateOne({
+            $push: {
+                comments: {
+                    username: user.username,
+                    comment: req.body.comment
+                }
+            }
+        });
+        res.status(200).json(post);
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
 
 
 module.exports = router;
