@@ -9,6 +9,8 @@ const cors = require("cors");
 const userRoute = require('./routes/users');
 const authRoute = require('./routes/auth');
 const postRoute = require('./routes/posts');
+const conversationRoute = require('./routes/conversations');
+const messageRoute = require('./routes/messages');
 
 const app = express();
 const storage = multer.diskStorage({
@@ -44,6 +46,8 @@ app.use((req, res, next) => {
 app.use('/api/users', userRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/posts', postRoute);
+app.use('/api/conversations', conversationRoute);
+app.use('/api/messages', messageRoute);
 app.use('/images', express.static(path.join(__dirname, "/public/images")));
 
 
