@@ -61,7 +61,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  console.log("gotten");
+  res.send("gotten");
 });
 
 app.listen(process.env.PORT, () => {
